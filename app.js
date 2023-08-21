@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
 const morgan = require("morgan")
+const cors = require('cors')
 const {
   all_blogs,
   find_blog,
@@ -13,6 +14,7 @@ const {
 const app = express()
 app.use(morgan("dev"))
 app.use(express.json())
+app.use(cors())
 
 mongoose
   .connect(process.env.DB_URI)
