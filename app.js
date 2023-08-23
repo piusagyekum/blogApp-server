@@ -2,19 +2,15 @@ require("dotenv").config()
 const express = require("express")
 const mongoose = require("mongoose")
 const morgan = require("morgan")
-const cors = require('cors')
-const {
-  all_blogs,
-  find_blog,
-  delete_blog,
-  add_blog,
-  edit_blog,
-} = require("./controllers/blogController")
+const cors = require("cors")
+const blogRouter = require("./routes/blogRoutes")
 
 const app = express()
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(cors())
+
+app.use("/blogs",blogRouter)
 
 mongoose
   .connect(process.env.DB_URI)
@@ -26,13 +22,3 @@ mongoose
   .catch(() => {
     console.log("Could not connect to the database")
   })
-
-app.get("/blogs", all_blogs)
-
-app.get("/blogs/:id", find_blog)
-
-app.delete("/blogs/:id", delete_blog)
-
-app.post("/blogs/add", add_blog)
-
-app.patch("/blogs/:id", edit_blog)

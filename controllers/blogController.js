@@ -32,7 +32,7 @@ const delete_blog = (req, res) => {
 
   Blog.findByIdAndDelete(id)
     .then(result => {
-      res.json({ code: 0, Message: "The blog was deleted successfully" })
+      res.json({ code: 0, Message: "The blog was deleted successfully",result })
     })
     .catch(err => {
       res.json({ code: 1, Message: "Blog was not found" })
