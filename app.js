@@ -8,11 +8,11 @@ const userRouter = require("./routes/userRoutes")
 
 const app = express()
 app.use(morgan("dev"))
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
-app.use("/blogs",blogRouter)
 app.use("/user",userRouter)
+app.use("/blogs",blogRouter)
 
 mongoose
   .connect(process.env.DB_URI)

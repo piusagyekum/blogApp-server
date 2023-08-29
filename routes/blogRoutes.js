@@ -6,8 +6,11 @@ const {
   add_blog,
   edit_blog,
 } = require("../controllers/blogController")
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
+
+router.use(requireAuth)
 
 router.get("/", all_blogs)
 
