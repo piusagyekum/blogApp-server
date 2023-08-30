@@ -2,7 +2,8 @@ const Blog = require("../models/blog")
 const mongoose = require("mongoose")
 
 const all_blogs = (req, res) => {
-  Blog.find()
+  const user_id = req.user._id
+  Blog.find({user_id})
     .sort({ createdAt: -1 })
     .then(blogs => {
       res.json({ code: 0, blogs })
@@ -40,7 +41,8 @@ const delete_blog = (req, res) => {
 }
 
 const add_blog = (req, res) => {
-  const blog = new Blog(req.body)
+  const user_id = req.user._id
+  const blog = new Blog({...req.body,user_id})
 
   blog
     .save()

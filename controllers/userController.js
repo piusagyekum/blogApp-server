@@ -31,7 +31,7 @@ const signupUser = async (req, res) => {
       details: { email, token },
     })
   } catch (error) {
-    res.status(400).json({ code: 1, error: error.message })
+    res.status(400).json({ code: 1, message: error.message })
   }
 }
 
